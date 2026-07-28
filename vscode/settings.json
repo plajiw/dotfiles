@@ -1,0 +1,292 @@
+{
+    // Workbench / interface
+    "workbench.iconTheme": "material-icon-theme",
+    "workbench.startupEditor": "none",
+    "window.zoomLevel": -0.8,
+    "explorer.compactFolders": false,
+
+    // Editor - font and readability
+    "editor.fontFamily": "'JetBrains Mono', 'Cascadia Code', Consolas, 'Courier New', monospace",
+    "editor.fontSize": 14,
+    "editor.fontLigatures": false,
+    "editor.lineHeight": 1.5,
+
+    "editor.minimap.enabled": false,
+    "editor.guides.bracketPairs": false,
+    "editor.stickyScroll.enabled": true,
+    "editor.bracketPairColorization.enabled": true,
+    "editor.renderWhitespace": "none",
+    "editor.cursorSmoothCaretAnimation": "on",
+    "editor.smoothScrolling": true,
+    "editor.linkedEditing": true,
+
+    "terminal.integrated.fontFamily": "'JetBrainsMono Nerd Font', 'CaskaydiaCove Nerd Font', monospace",
+    "terminal.integrated.smoothScrolling": true,
+    "terminal.integrated.defaultProfile.windows": "Git Bash",
+    "terminal.integrated.defaultProfile.linux": "bash",
+    "terminal.integrated.cursorStyle": "line",
+    "terminal.integrated.cursorBlinking": true,
+    // Autocomplete/IntelliSense in the terminal (commands, flags, files)
+    "terminal.integrated.suggest.enabled": true,
+    "terminal.integrated.suggest.quickSuggestions": true,
+    "terminal.integrated.suggest.runOnEnter": "exactMatch",
+    // Shell integration: navigate between commands, see exit code, etc.
+    "terminal.integrated.shellIntegration.enabled": true,
+    "terminal.integrated.shellIntegration.history": 1000,
+    "terminal.integrated.stickyScroll.enabled": true,
+    // Quality of life
+    "terminal.integrated.scrollback": 10000,
+    "terminal.integrated.copyOnSelection": true,
+    "terminal.integrated.mouseWheelZoom": true,
+    "terminal.integrated.enablePersistentSessions": true,
+
+    // Default indentation - 4 spaces
+    "editor.tabSize": 4,
+    "editor.insertSpaces": true,
+    "editor.detectIndentation": false,
+
+    // Formatting / saving
+    "editor.formatOnSave": false,
+    "editor.formatOnPaste": false,
+    "editor.codeActionsOnSave": {
+        "source.organizeImports": "explicit"
+    },
+    "files.autoSave": "onFocusChange",
+    "files.trimTrailingWhitespace": true,
+    "files.insertFinalNewline": true,
+    "files.trimFinalNewlines": true,
+
+    // TypeScript / JavaScript
+    "prettier.tabWidth": 4,
+    "[typescript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.tabSize": 4
+    },
+    "[typescriptreact]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.tabSize": 4
+    },
+    "[javascript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.tabSize": 4
+    },
+    "[javascriptreact]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.tabSize": 4
+    },
+    "[json]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.tabSize": 4
+    },
+    "[jsonc]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.tabSize": 4
+    },
+    "[html]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[css]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+
+    // Python
+    "python.defaultInterpreterPath": "python",
+    "python.analysis.typeCheckingMode": "basic",
+    "python.analysis.autoImportCompletions": true,
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.black-formatter",
+        "editor.tabSize": 4,
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": "explicit"
+        }
+    },
+
+    // C# / .NET
+    "dotnet.server.useOmnisharp": false,
+    "dotnet.completion.showCompletionItemsFromUnimportedNamespaces": true,
+    "csharp.format.enable": true,
+    "[csharp]": {
+        "editor.defaultFormatter": "ms-dotnettools.csharp",
+        "editor.tabSize": 4
+    },
+
+    // C / C++ (clang-format via cpptools)
+    "[c]": {
+        "editor.defaultFormatter": "ms-vscode.cpptools",
+        "editor.tabSize": 4
+    },
+    "[cpp]": {
+        "editor.defaultFormatter": "ms-vscode.cpptools",
+        "editor.tabSize": 4
+    },
+
+    // Go (gofmt uses TAB by convention)
+    "[go]": {
+        "editor.defaultFormatter": "golang.go",
+        "editor.insertSpaces": false,
+        "editor.tabSize": 4
+    },
+
+    // Markdown - reading and writing
+    "[markdown]": {
+        "editor.wordWrap": "bounded",
+        "editor.wordWrapColumn": 80,
+        "editor.tabSize": 2,
+        "editor.quickSuggestions": {
+            "comments": "off",
+            "strings": "off",
+            "other": "off"
+        },
+        "editor.rulers": [],
+        "files.trimTrailingWhitespace": false,
+        "editor.formatOnSave": false,
+        "editor.defaultFormatter": "yzhang.markdown-all-in-one"
+    },
+    "markdown.preview.fontSize": 14,
+    "markdown.preview.lineHeight": 1.6,
+    "markdown.preview.breaks": true,
+    "markdown.updateLinksOnFileMove.enabled": "always",
+
+    // YAML / Docker (YAML requires 2 spaces)
+    "[yaml]": {
+        "editor.defaultFormatter": "redhat.vscode-yaml",
+        "editor.tabSize": 2,
+        "editor.insertSpaces": true
+    },
+    "[dockercompose]": {
+        "editor.defaultFormatter": "redhat.vscode-yaml",
+        "editor.tabSize": 2
+    },
+    "files.associations": {
+        "docker-compose*.yml": "dockercompose",
+        "compose*.yml": "dockercompose",
+        "Dockerfile.*": "dockerfile",
+        ".gitlab-ci.yml": "yaml"
+    },
+
+    // Code Runner
+    "code-runner.runInTerminal": true,
+    "code-runner.saveFileBeforeRun": true,
+    "code-runner.ignoreSelection": true,
+    "code-runner.clearPreviousOutput": true,
+    "code-runner.executorMap": {
+        "c": "clear && cd $dir && gcc -Wall -Wextra -std=c17 \"$fileName\" -o \"$fileNameWithoutExt\" && $dir$fileNameWithoutExt",
+        "cpp": "clear && cd $dir && g++ -Wall -Wextra -std=c++20 \"$fileName\" -o \"$fileNameWithoutExt\" && $dir$fileNameWithoutExt",
+        "python": "clear && python -u",
+        "go": "clear && go run",
+        "javascript": "clear && node",
+        "typescript": "clear && ts-node"
+    },
+
+    // Clean / minimized layout
+    "workbench.activityBar.location": "top",
+    "workbench.layoutControl.enabled": true,
+    "window.commandCenter": false,
+    "window.menuBarVisibility": "compact",
+    "editor.overviewRulerBorder": true,
+    "editor.hideCursorInOverviewRuler": true,
+    "editor.glyphMargin": true,
+    "workbench.editor.tabActionCloseVisibility": true,
+
+    // Open tabs - organization and readability
+    "workbench.editor.pinnedTabsOnSeparateRow": true,
+    "workbench.editor.tabSizing": "shrink",
+    "workbench.editor.pinnedTabSizing": "normal",
+    "workbench.editor.highlightModifiedTabs": true,
+    "workbench.editor.decorations.badges": true,
+    "workbench.editor.decorations.colors": true,
+    "workbench.editor.labelFormat": "medium",
+
+    // Code readability
+    "editor.renderLineHighlight": "all",
+    "editor.cursorBlinking": "smooth",
+    "editor.guides.indentation": true,
+    "editor.stickyScroll.maxLineCount": 3,
+    "diffEditor.ignoreTrimWhitespace": false,
+    "editor.occurrencesHighlight": "singleFile",
+
+    // Hints
+    "editor.inlayHints.enabled": "offUnlessPressed",
+    "editor.parameterHints.enabled": true,
+    "editor.suggest.preview": true,
+    "editor.hover.delay": 200,
+    "javascript.inlayHints.parameterNames.enabled": "literals",
+    "typescript.inlayHints.parameterNames.enabled": "literals",
+    "python.analysis.inlayHints.functionReturnTypes": true,
+
+    // Reading docs / Markdown
+    "editor.wordWrapColumn": 100,
+    "markdown.preview.scrollPreviewWithEditor": true,
+    "markdown.preview.markEditorSelection": true,
+    "markdown.occurrencesHighlight.enabled": true,
+    "markdown.validate.enabled": true,
+
+    // Telemetry - disabled
+    "telemetry.telemetryLevel": "off",
+    "redhat.telemetry.enabled": false,
+    "terminal.integrated.env.windows": {
+        "DOTNET_CLI_TELEMETRY_OPTOUT": "1"
+    },
+    "terminal.integrated.env.linux": {
+        "DOTNET_CLI_TELEMETRY_OPTOUT": "1"
+    },
+
+    // Don't watch generated folders
+    "files.watcherExclude": {
+        "**/bin/**": true,
+        "**/obj/**": true,
+        "**/.vs/**": true,
+        "**/.git/objects/**": true,
+        "**/node_modules/**": true,
+        "**/__pycache__/**": true
+    },
+    // Don't index generated folders in search
+    "search.exclude": {
+        "**/bin": true,
+        "**/obj": true,
+        "**/.vs": true,
+        "**/node_modules": true,
+        "**/__pycache__": true,
+        "**/*.min.js": true
+    },
+    // Hide noise from the explorer
+    "files.exclude": {
+        "**/bin": true,
+        "**/obj": true,
+        "**/.vs": true,
+        "**/node_modules": true,
+        "**/__pycache__": true
+    },
+
+    // Analyzers only on open files; compile errors across the whole solution
+    "dotnet.backgroundAnalysis.analyzerDiagnosticsScope": "openFiles",
+    "dotnet.backgroundAnalysis.compilerDiagnosticsScope": "fullSolution",
+    // (quick usings suggestion is already enabled in the C# section above)
+    "dotnet.completion.provideRegexCompletions": false,
+
+    // Memory limits / general optimizations
+    "editor.largeFileOptimizations": true,
+    "extensions.autoCheckUpdates": false,
+    "git.autorefresh": true,
+    "workbench.enableExperiments": false,
+    "workbench.settings.enableNaturalLanguageSearch": false,
+    "claudeCode.preferredLocation": "panel",
+    "workbench.panel.showLabels": false,
+    "docker.extension.enableComposeLanguageServer": false,
+    "github.copilot.nextEditSuggestions.enabled": false,
+    "github.copilot.enable": {
+        "*": false,
+        "plaintext": false,
+        "markdown": false,
+        "scminput": false,
+        "python": false
+    },
+    "git.enableSmartCommit": true,
+    "gitlens.ai.model": "vscode",
+    "gitlens.ai.vscode.model": "copilotcli:",
+    "markdown-preview-enhanced.previewTheme": "github-dark.css",
+    "terminal.integrated.fontSize": 15,
+    "chat.titleBar.openInAgentsWindow.enabled": false,
+    "terminal.integrated.mouseWheelScrollSensitivity": 3,
+    "terminal.integrated.gpuAcceleration": "off"
+}

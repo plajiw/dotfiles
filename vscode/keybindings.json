@@ -1,0 +1,234 @@
+[
+    // Shift+Enter in the terminal -> inserts a line break without running the command
+    {
+        "key": "shift+enter",
+        "command": "workbench.action.terminal.sendSequence",
+        "args": {
+            "text": "\u001b\r"
+        },
+        "when": "terminalFocus"
+    },
+
+    // Ctrl+B -> Show/hide the sidebar (Cmd+B on mac)
+    {
+        "key": "ctrl+b",
+        "mac": "cmd+b",
+        "command": "workbench.action.toggleSidebarVisibility"
+    },
+
+    // Ctrl+R, Ctrl+R -> Rename symbol (same as native F2, but as a chord)
+    {
+        "key": "ctrl+r ctrl+r",
+        "mac": "cmd+r cmd+r",
+        "command": "editor.action.rename",
+        "when": "editorHasRenameProvider && editorTextFocus && !editorReadonly"
+    },
+
+    // Ctrl+K, Ctrl+D -> Format document (native Shift+Alt+F also works)
+    {
+        "key": "ctrl+k ctrl+d",
+        "mac": "cmd+k cmd+d",
+        "command": "editor.action.formatDocument",
+        "when": "editorTextFocus && !editorReadonly"
+    },
+
+    // Ctrl+K, Ctrl+I -> Organize imports (sorts / removes unused)
+    {
+        "key": "ctrl+k ctrl+i",
+        "mac": "cmd+k cmd+i",
+        "command": "editor.action.organizeImports",
+        "when": "editorTextFocus && !editorReadonly"
+    },
+
+    // Ctrl+Shift+B -> Build (runs the default build task defined in tasks.json)
+    {
+        "key": "ctrl+shift+b",
+        "mac": "cmd+shift+b",
+        "command": "workbench.action.tasks.build"
+    },
+
+    // F6 -> Run the current file via Code Runner
+    {
+        "key": "f6",
+        "command": "code-runner.run"
+    },
+
+    // Shift+F6 -> Stop Code Runner execution
+    {
+        "key": "shift+f6",
+        "command": "code-runner.stop",
+        "when": "code-runner.codeRunning"
+    },
+
+    // NOTE: debug (F5) stays native on purpose - F5 is also "Continue"
+
+    // Ctrl+W -> Close current tab
+    {
+        "key": "ctrl+w",
+        "mac": "cmd+w",
+        "command": "workbench.action.closeActiveEditor"
+    },
+
+    // Ctrl+Shift+W -> Close other tabs in the group
+    {
+        "key": "ctrl+shift+w",
+        "mac": "cmd+shift+w",
+        "command": "workbench.action.closeOtherEditors"
+    },
+
+    // Ctrl+Alt+Shift+N -> Create new folder in the explorer
+    {
+        "key": "ctrl+alt+shift+n",
+        "command": "explorer.newFolder",
+        "when": "explorerViewletFocus"
+    },
+
+    // Ctrl+Alt+Shift+C -> Create new file in the explorer
+    {
+        "key": "ctrl+alt+shift+c",
+        "command": "explorer.newFile",
+        "when": "explorerViewletFocus"
+    },
+
+    // Below: shortcuts that are already native to VS Code, mapped explicitly as a safety net in case the default gets overridden; on mac I use the real VS Code equivalent instead of a literal Ctrl-for-Cmd swap where it collides with macOS's own shortcuts.
+
+    // Ctrl+\ -> Split the current editor
+    {
+        "key": "ctrl+\\",
+        "mac": "cmd+\\",
+        "command": "workbench.action.splitEditor"
+    },
+
+    // Ctrl+1 -> Focus editor group 1
+    {
+        "key": "ctrl+1",
+        "mac": "cmd+1",
+        "command": "workbench.action.focusFirstEditorGroup"
+    },
+
+    // Ctrl+2 -> Focus editor group 2
+    {
+        "key": "ctrl+2",
+        "mac": "cmd+2",
+        "command": "workbench.action.focusSecondEditorGroup"
+    },
+
+    // F12 -> Go to definition (same key on any OS)
+    {
+        "key": "f12",
+        "command": "editor.action.revealDefinition",
+        "when": "editorHasDefinitionProvider && editorTextFocus"
+    },
+
+    // Alt+F12 -> Peek definition (view definition without leaving the current file)
+    {
+        "key": "alt+f12",
+        "command": "editor.action.peekDefinition",
+        "when": "editorHasDefinitionProvider && editorTextFocus"
+    },
+
+    // Shift+F12 -> Find all references
+    {
+        "key": "shift+f12",
+        "command": "editor.action.goToReferences",
+        "when": "editorHasReferenceProvider && editorTextFocus"
+    },
+
+    // Ctrl+Shift+O -> Go to symbol in the current file
+    {
+        "key": "ctrl+shift+o",
+        "mac": "cmd+shift+o",
+        "command": "workbench.action.gotoSymbol",
+        "when": "editorTextFocus"
+    },
+
+    // Ctrl+T -> Go to symbol in the whole workspace
+    {
+        "key": "ctrl+t",
+        "mac": "cmd+t",
+        "command": "workbench.action.showAllSymbols"
+    },
+
+    // Alt+Up -> Move line up (Option+Up is already the default on mac)
+    {
+        "key": "alt+up",
+        "command": "editor.action.moveLinesUpAction",
+        "when": "editorTextFocus && !editorReadonly"
+    },
+
+    // Alt+Down -> Move line down
+    {
+        "key": "alt+down",
+        "command": "editor.action.moveLinesDownAction",
+        "when": "editorTextFocus && !editorReadonly"
+    },
+
+    // Shift+Alt+Up -> Duplicate line up
+    {
+        "key": "shift+alt+up",
+        "command": "editor.action.copyLinesUpAction",
+        "when": "editorTextFocus && !editorReadonly"
+    },
+
+    // Shift+Alt+Down -> Duplicate line down
+    {
+        "key": "shift+alt+down",
+        "command": "editor.action.copyLinesDownAction",
+        "when": "editorTextFocus && !editorReadonly"
+    },
+
+    // Ctrl+Shift+L -> Select all occurrences of the term under the cursor
+    {
+        "key": "ctrl+shift+l",
+        "mac": "cmd+shift+l",
+        "command": "editor.action.selectHighlights",
+        "when": "editorTextFocus"
+    },
+
+    // Ctrl+Shift+T -> Reopen the last closed tab
+    {
+        "key": "ctrl+shift+t",
+        "mac": "cmd+shift+t",
+        "command": "workbench.action.reopenClosedEditor"
+    },
+
+    // Ctrl+Tab -> Next tab (Cmd+Tab belongs to macOS's own app switcher,
+    // so VS Code uses Ctrl+Tab on mac too - no override here)
+    {
+        "key": "ctrl+tab",
+        "command": "workbench.action.nextEditor"
+    },
+
+    // Ctrl+Shift+Tab -> Previous tab (same reason as above)
+    {
+        "key": "ctrl+shift+tab",
+        "command": "workbench.action.previousEditor"
+    },
+
+    // Alt+Left -> Navigate back (previous cursor/file)
+    {
+        "key": "alt+left",
+        "mac": "ctrl+-",
+        "command": "workbench.action.navigateBack"
+    },
+
+    // Alt+Right -> Navigate forward
+    {
+        "key": "alt+right",
+        "mac": "ctrl+shift+-",
+        "command": "workbench.action.navigateForward"
+    },
+
+    // Ctrl+J -> Show/hide the terminal panel
+    {
+        "key": "ctrl+j",
+        "mac": "cmd+j",
+        "command": "workbench.action.togglePanel"
+    },
+    // Alt+Z -> Toggle word wrap
+    {
+        "key": "alt+z",
+        "mac": "alt+z",
+        "command": "editor.action.toggleWordWrap"
+    }
+]
