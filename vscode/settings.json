@@ -20,7 +20,7 @@
     "editor.smoothScrolling": true,
     "editor.linkedEditing": true,
 
-    "terminal.integrated.fontFamily": "'JetBrainsMono Nerd Font', 'CaskaydiaCove Nerd Font', monospace",
+    "terminal.integrated.fontFamily": "'JetBrainsMono Nerd Font', monospace",
     "terminal.integrated.smoothScrolling": true,
     "terminal.integrated.defaultProfile.windows": "Git Bash",
     "terminal.integrated.defaultProfile.linux": "bash",
