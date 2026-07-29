@@ -28,7 +28,11 @@
     "terminal.integrated.cursorBlinking": true,
     // Autocomplete/IntelliSense in the terminal (commands, flags, files)
     "terminal.integrated.suggest.enabled": true,
-    "terminal.integrated.suggest.quickSuggestions": true,
+    "terminal.integrated.suggest.quickSuggestions": {
+        "commands": "on",
+        "arguments": "on",
+        "unknown": "off"
+    },
     "terminal.integrated.suggest.runOnEnter": "exactMatch",
     // Shell integration: navigate between commands, see exit code, etc.
     "terminal.integrated.shellIntegration.enabled": true,
@@ -210,8 +214,7 @@
     "editor.parameterHints.enabled": true,
     "editor.suggest.preview": true,
     "editor.hover.delay": 200,
-    "javascript.inlayHints.parameterNames.enabled": "literals",
-    "typescript.inlayHints.parameterNames.enabled": "literals",
+    "js/ts.inlayHints.parameterNames.enabled": "literals",
     "python.analysis.inlayHints.functionReturnTypes": true,
 
     // Reading docs / Markdown
