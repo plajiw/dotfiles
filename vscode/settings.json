@@ -2,6 +2,9 @@
     // Workbench / interface
     "workbench.iconTheme": "material-icon-theme",
     "workbench.startupEditor": "none",
+    // Always show the tab bar, even with a single editor open (e.g. settings.json)
+    "workbench.editor.showTabs": "multiple",
+    "workbench.colorTheme": "Isolum",
     "window.zoomLevel": -0.8,
     "explorer.compactFolders": false,
 
@@ -26,14 +29,7 @@
     "terminal.integrated.defaultProfile.linux": "bash",
     "terminal.integrated.cursorStyle": "line",
     "terminal.integrated.cursorBlinking": true,
-    // Autocomplete/IntelliSense in the terminal (commands, flags, files)
-    "terminal.integrated.suggest.enabled": true,
-    "terminal.integrated.suggest.quickSuggestions": {
-        "commands": "on",
-        "arguments": "on",
-        "unknown": "off"
-    },
-    "terminal.integrated.suggest.runOnEnter": "exactMatch",
+    "terminal.integrated.suggest.enabled": false,
     // Shell integration: navigate between commands, see exit code, etc.
     "terminal.integrated.shellIntegration.enabled": true,
     "terminal.integrated.shellIntegration.history": 1000,
@@ -43,6 +39,9 @@
     "terminal.integrated.copyOnSelection": true,
     "terminal.integrated.mouseWheelZoom": true,
     "terminal.integrated.enablePersistentSessions": true,
+    "terminal.integrated.mouseWheelScrollSensitivity": 3,
+    "terminal.integrated.gpuAcceleration": "off",
+    "terminal.integrated.fontSize": 15,
 
     // Default indentation - 4 spaces
     "editor.tabSize": 4,
@@ -284,12 +283,5 @@
         "scminput": false,
         "python": false
     },
-    "git.enableSmartCommit": true,
-    "gitlens.ai.model": "vscode",
-    "gitlens.ai.vscode.model": "copilotcli:",
-    "markdown-preview-enhanced.previewTheme": "github-dark.css",
-    "terminal.integrated.fontSize": 15,
-    "chat.titleBar.openInAgentsWindow.enabled": false,
-    "terminal.integrated.mouseWheelScrollSensitivity": 3,
-    "terminal.integrated.gpuAcceleration": "off"
+    "chat.titleBar.openInAgentsWindow.enabled": false
 }

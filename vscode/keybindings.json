@@ -24,6 +24,13 @@
         "when": "editorHasRenameProvider && editorTextFocus && !editorReadonly"
     },
 
+    // Ctrl+Alt+R -> Open recent (files/workspaces). Native Ctrl+R is captured
+    {
+        "key": "ctrl+alt+r",
+        "mac": "cmd+alt+r",
+        "command": "workbench.action.openRecent"
+    },
+
     // Ctrl+K, Ctrl+D -> Format document (native Shift+Alt+F also works)
     {
         "key": "ctrl+k ctrl+d",
