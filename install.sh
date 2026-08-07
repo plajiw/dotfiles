@@ -125,6 +125,17 @@ install_vscode_settings() {
     done
 }
 
+# ---- git config -------------------------------------------------------------
+install_git_config() {
+    if ! command -v git >/dev/null 2>&1; then
+        log_error "git not found, skipping git config."
+        return
+    fi
+
+    git config --global include.path "$repo_dir/git/gitconfig"
+    log_success "Linked git/gitconfig via include.path (core.editor = code --wait)"
+}
+
 # ---- fonts -----------------------------------------------------------------
 # resolve_latest_asset_url <owner/repo> <asset name regex>
 resolve_latest_asset_url() {
@@ -331,18 +342,21 @@ install_fonts() {
 main_menu() {
     select_menu "What would you like to install?" \
         "VS Code configs (settings.json + keybindings.json)" \
+        "Git config (core.editor = code --wait)" \
         "Fonts" \
         "Everything" \
         "Exit"
 
     case "$REPLY_INDEX" in
         0) install_vscode_settings ;;
-        1) install_fonts ;;
-        2)
+        1) install_git_config ;;
+        2) install_fonts ;;
+        3)
             install_vscode_settings
+            install_git_config
             install_fonts
             ;;
-        3) log_info "Exiting."; exit 0 ;;
+        4) log_info "Exiting."; exit 0 ;;
         *) log_warn "Invalid choice."; main_menu ;;
     esac
 }

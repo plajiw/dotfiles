@@ -1,0 +1,7 @@
+# Linked into ~/.gitconfig via `git config --global include.path` (see install.sh).
+# Anything added here applies globally, on top of whatever is already in ~/.gitconfig.
+
+[core]
+    # Opens VS Code for commit messages, interactive rebase, etc.
+    # --wait makes git block until the tab is closed, so it waits for you to finish editing.
+    editor = code --wait
