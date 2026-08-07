@@ -176,42 +176,38 @@ ensure_font_source() {
     fi
 }
 
-# install_fonts_windows <fonts...> -- installs via the Shell "Fonts" folder
-# (shell:fonts), the same mechanism Explorer uses on drag-and-drop. Unlike a
-# plain copy + registry entry, this actually registers and activates the
-# font for the running session (no reboot/logoff needed).
-# Prints any PowerShell error to stderr and returns non-zero on failure.
-install_fonts_windows() {
-    local fonts=("$@") font win_path ps_list="" ps_err
+# register_windows_fonts <windows-path...> -- loads fonts into the current
+# session (AddFontResource) and broadcasts WM_FONTCHANGE so already-open
+# apps pick them up immediately, no logoff/reboot needed. This only affects
+# runtime activation; the registry entry (done separately) is what makes it
+# survive a reboot. Prints any error to stderr and returns non-zero if
+# PowerShell/Add-Type is unavailable (e.g. locked-down corporate policy) --
+# the font still works after the next login even if this fails.
+register_windows_fonts() {
+    local win_paths=("$@") p ps_list="" ps_err
 
     if ! command -v powershell.exe >/dev/null 2>&1; then
         echo "powershell.exe not found" >&2
         return 1
     fi
 
-    for font in "${fonts[@]}"; do
-        win_path="$(cygpath -w "$font")"
-        win_path="${win_path//\'/\'\'}"
-        ps_list+="'$win_path',"
+    for p in "${win_paths[@]}"; do
+        ps_list+="'${p//\'/\'\'}',"
     done
 
-    if ! ps_err="$(powershell.exe -NoProfile -Command \
-        "\$ErrorActionPreference='Stop'; \$f = (New-Object -ComObject Shell.Application).Namespace(0x14); @(${ps_list%,}) | ForEach-Object { \$f.CopyHere(\$_, 20) }" \
-        2>&1)"; then
+    if ! ps_err="$(powershell.exe -NoProfile -Command "
+        \$ErrorActionPreference = 'Stop'
+        Add-Type -Namespace Win32 -Name Font -MemberDefinition '
+            [DllImport(\"gdi32.dll\")] public static extern int AddFontResource(string lpFileName);
+            [DllImport(\"user32.dll\")] public static extern IntPtr SendMessageTimeout(IntPtr hWnd, uint Msg, UIntPtr wParam, IntPtr lParam, uint fuFlags, uint uTimeout, out UIntPtr lpdwResult);
+        '
+        foreach (\$p in @(${ps_list%,})) { [Win32.Font]::AddFontResource(\$p) | Out-Null }
+        \$result = [UIntPtr]::Zero
+        [Win32.Font]::SendMessageTimeout([IntPtr]0xffff, 0x1D, [UIntPtr]::Zero, [IntPtr]::Zero, 2, 1000, [ref]\$result) | Out-Null
+    " 2>&1)"; then
         echo "$ps_err" >&2
         return 1
     fi
-}
-
-# fallback_install_windows_font <src> <dest_dir> -- plain copy + legacy
-# registry entry, used only if the Shell method above is unavailable/blocked.
-# Not guaranteed to activate without a logoff/reboot, but better than nothing.
-fallback_install_windows_font() {
-    local font="$1" dest_dir="$2" name
-    name="$(basename "$font")"
-    cp "$font" "$dest_dir/$name" 2>/dev/null || return 1
-    MSYS_NO_PATHCONV=1 reg add "HKCU\Software\Microsoft\Windows NT\CurrentVersion\Fonts" \
-        /v "${name%.ttf} (TrueType)" /t REG_SZ /d "$name" /f >/dev/null 2>&1 || true
 }
 
 # install_font_dir <src_dir> <family_label>
@@ -250,24 +246,28 @@ install_font_dir() {
             return
         fi
 
-        local ps_error=""
-        if ! ps_error="$(install_fonts_windows "${missing[@]}" 2>&1)"; then
-            log_warn "Shell font install failed, falling back to plain copy: $ps_error"
-            for font in "${missing[@]}"; do
-                fallback_install_windows_font "$font" "$dest_dir" || true
-            done
-        fi
-
+        local win_paths=()
         for font in "${missing[@]}"; do
-            if [ -e "$dest_dir/$(basename "$font")" ]; then
-                installed=$((installed + 1))
+            name="$(basename "$font")"
+            if ! cp "$font" "$dest_dir/$name" 2>/dev/null; then
+                log_warn "Could not copy $name (in use?), skipping."
+                continue
             fi
+            MSYS_NO_PATHCONV=1 reg add "HKCU\Software\Microsoft\Windows NT\CurrentVersion\Fonts" \
+                /v "${name%.ttf} (TrueType)" /t REG_SZ /d "$name" /f >/dev/null 2>&1 || true
+            win_paths+=("$(cygpath -w "$dest_dir/$name")")
+            installed=$((installed + 1))
         done
 
+        if [ "${#win_paths[@]}" -gt 0 ]; then
+            local ps_error=""
+            if ! ps_error="$(register_windows_fonts "${win_paths[@]}" 2>&1)"; then
+                log_warn "Could not activate fonts for this session ($ps_error) -- they'll be available after your next login."
+            fi
+        fi
+
         if [ "$installed" -lt "${#missing[@]}" ]; then
-            log_warn "$((${#missing[@]} - installed)) font(s) did not register, check manually in Settings > Fonts."
-        elif [ -n "$ps_error" ]; then
-            log_warn "Fonts copied via fallback method -- may need a logoff/reboot to activate."
+            log_warn "$((${#missing[@]} - installed)) font(s) could not be copied."
         fi
         log_success "$family_label: $installed installed, $skipped already present -> $dest_dir"
         return
@@ -360,8 +360,13 @@ banner() {
 EOF
 }
 
+if [ -t 1 ]; then
+    clear 2>/dev/null || printf '\033c'
+fi
+
 echo "${cyan}${bold}$(banner)${reset}"
 main_menu
 
 echo ""
 log_success "Done."
+log_info "Restart VS Code (and any open terminals) so the new settings/fonts take effect."
