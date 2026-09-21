@@ -1,12 +1,12 @@
 {
     // Workbench / interface
-    "workbench.iconTheme": "material-icon-theme",
+    "workbench.iconTheme": "vscode-jetbrains-icon-theme",
     "workbench.startupEditor": "welcomePage",
-    // Always show the tab bar, even with a single editor open (e.g. settings.json)
     "workbench.editor.showTabs": "multiple",
-    "workbench.colorTheme": "Isolum",
+    "workbench.colorTheme": "Dark 2026",
     "window.zoomLevel": -0.8,
     "explorer.compactFolders": false,
+    "workbench.experimental.modernUI": true,
 
     // Editor - font and readability
     "editor.fontFamily": "'JetBrains Mono', 'Cascadia Code', Consolas, 'Courier New', monospace",
