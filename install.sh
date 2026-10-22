@@ -55,6 +55,7 @@ select_menu() {
             echo "  $((i + 1))) ${options[$i]}"
         done
         read -rp "Choice [1-$count]: " reply
+        reply="${reply%$'\r'}"
         REPLY_INDEX=$((reply - 1))
         return
     fi
@@ -134,6 +135,23 @@ install_git_config() {
 
     git config --global include.path "$repo_dir/git/gitconfig"
     log_success "Linked git/gitconfig via include.path (core.editor = code --wait)"
+}
+
+# ---- Xournal++ Graphite (Windows) ------------------------------------------
+install_xournal_config() {
+    if [ "$is_windows" -ne 1 ]; then
+        log_warn "Xournal++ Graphite is currently available on Windows 10/11 only."
+        return
+    fi
+    if ! command -v powershell.exe >/dev/null 2>&1; then
+        log_error "PowerShell is required to install the Xournal++ profile."
+        return 1
+    fi
+
+    local script_path
+    script_path="$(cygpath -w "$repo_dir/xournal/install.ps1")"
+    powershell.exe -NoProfile -ExecutionPolicy Bypass -File "$script_path"
+    log_success "Installed Xournal++ Graphite profile."
 }
 
 # ---- fonts -----------------------------------------------------------------
@@ -344,6 +362,7 @@ main_menu() {
         "VS Code configs (settings.json + keybindings.json)" \
         "Git config (core.editor = code --wait)" \
         "Fonts" \
+        "Xournal++ Graphite (Windows 10/11)" \
         "Everything" \
         "Exit"
 
@@ -351,12 +370,16 @@ main_menu() {
         0) install_vscode_settings ;;
         1) install_git_config ;;
         2) install_fonts ;;
-        3)
+        3) install_xournal_config ;;
+        4)
             install_vscode_settings
             install_git_config
             install_fonts
+            if [ "$is_windows" -eq 1 ]; then
+                install_xournal_config
+            fi
             ;;
-        4) log_info "Exiting."; exit 0 ;;
+        5) log_info "Exiting."; exit 0 ;;
         *) log_warn "Invalid choice."; main_menu ;;
     esac
 }

@@ -1,0 +1,52 @@
+/* Graphite Study: neutral dark surfaces, consistent across GTK panels. */
+window.darkMode {
+    background-color: #141416;
+    color: #ecece9;
+}
+window.darkMode menubar,
+window.darkMode #tbTop1,
+window.darkMode #tbTop2,
+window.darkMode #tbLeft1,
+window.darkMode #tbLeft2,
+window.darkMode #tbBottom1,
+window.darkMode #tbBottom2,
+window.darkMode #statusbar,
+window.darkMode #sidebar {
+    background-color: #1b1b1d;
+    color: #ecece9;
+    border-color: #353538;
+}
+window.darkMode #sidebarContents,
+window.darkMode #sidebar scrolledwindow,
+window.darkMode #sidebar viewport {
+    background-color: #19191b;
+    color: #ecece9;
+}
+menu,
+menuitem,
+popover,
+tooltip {
+    color: #ecece9;
+}
+menu,
+popover,
+tooltip {
+    background-color: #242426;
+    border-color: #353538;
+}
+menu menuitem:hover,
+popover button:hover,
+window.darkMode menubar menuitem:hover,
+window.darkMode toolbar button:hover {
+    background-color: #303033;
+    border-color: #67676b;
+}
+window.darkMode toolbar button:checked,
+window.darkMode toolbar button:active,
+menu menuitem:checked {
+    background-color: #38383c;
+    border-color: #67676b;
+}
+window.darkMode separator {
+    background-color: #353538;
+}
